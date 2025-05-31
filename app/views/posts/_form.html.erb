@@ -1,0 +1,32 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div class="alert alert-danger">
+      <h5>Errores al guardar el Post:</h5>
+      <ul>
+        <% post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :titulo, "Título", class: "form-label" %>
+    <%= form.text_field :titulo, class: "form-control", autofocus: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :pregunta, "Pregunta", class: "form-label" %>
+    <%= form.text_area :pregunta, class: "form-control", rows: 4 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :respuesta, "Respuesta", class: "form-label" %>
+    <%= form.text_area :respuesta, class: "form-control", rows: 4 %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancelar", posts_path, class: "btn btn-secondary ms-2" %>
+  </div>
+<% end %>

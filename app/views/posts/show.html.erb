@@ -1,0 +1,30 @@
+<% content_for :title, "Detalle de Post" %>
+
+<% if notice.present? %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class="card mb-4">
+  <div class="card-header">
+    <h2><%= @post.titulo %></h2>
+  </div>
+  <div class="card-body">
+    <p><strong>Pregunta:</strong></p>
+    <p><%= simple_format(@post.pregunta) %></p>
+
+    <hr>
+
+    <p><strong>Respuesta:</strong></p>
+    <p><%= simple_format(@post.respuesta) %></p>
+  </div>
+  <div class="card-footer text-muted">
+    Creado el: <%= @post.created_at.strftime("%d/%m/%Y %H:%M") %>
+    <% if @post.updated_at && @post.updated_at > @post.created_at %>
+      &nbsp; | &nbsp; Actualizado el: <%= @post.updated_at.strftime("%d/%m/%Y %H:%M") %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "Volver a Posts", posts_path, class: "btn btn-secondary" %>
